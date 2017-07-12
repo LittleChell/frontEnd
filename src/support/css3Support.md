@@ -1,8 +1,8 @@
-###contents
+### contents
 
-[&nbsp;&nbsp;&nbsp;&nbsp;detecting css3 feature supporting](#detectCss3Support)
+[&nbsp;&nbsp;&nbsp;&nbsp;detecting css3 feature supporting](#detecting-css3-feature-supporting)
 
-#####<span id="detectCss3Support">detecting css3 feature supporting</span>
+##### detecting css3 feature supporting
 >true for supporting, false for the opposite.
 
 	function detectCSSFeature(featurename){
