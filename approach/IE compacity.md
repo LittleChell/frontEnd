@@ -1,14 +1,14 @@
-#IE 兼容
+#	IE 兼容
 
-#####	1.	[Date constructor returns NaN in IE, but works in Firefox and Chrome _date_ _stackoverflow_](https://stackoverflow.com/questions/2182246/date-constructor-returns-nan-in-ie-but-works-in-firefox-and-chrome)
-IE中对日期的解析为NAN。
+####	IE中对日期的解析为NAN
+[Date constructor returns NaN in IE, but works in Firefox and Chrome _date_ _stackoverflow_](https://stackoverflow.com/questions/2182246/date-constructor-returns-nan-in-ie-but-works-in-firefox-and-chrome)
+
 
 IE支持以下格式：<br>
 new Date(Y,M-1,D,H,M,S);
 
-#####	2.	兼容ie8 rgba()用法
+####	兼容ie8 rgba()用法
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19ffffff,endColorstr=#19ffffff);
-	rgba透明值	IE filter值
 
 <table style="width:100%;text-align: center;">
 <tr style="width:100%;">
