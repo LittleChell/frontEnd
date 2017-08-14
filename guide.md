@@ -10,4 +10,6 @@
 
 #####	[Tips	小技巧](https://github.com/LittleChell/front-end/tree/master/docs/tips.md)
 
+#####	[Examples	实用实例](https://github.com/LittleChell/front-end/tree/master/approach/examples.md)
+
 #####	[code repository	代码库](https://github.com/LittleChell/frontEnd/tree/master/code/codes.md)
