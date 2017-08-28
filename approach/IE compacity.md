@@ -7,6 +7,13 @@
 IE支持以下格式：<br>
 new Date(Y,M-1,D,H,M,S);
 
+####	IE CSS Hack
+*	 _         &nbsp;&emsp;IE6
+*	*          &nbsp;&nbsp;&emsp;IE6/7
+*	*+		   &emsp;IE7
+*	\9         &emsp;IE6/7/8
+*	\0         &emsp;IE8
+
 ####	兼容ie8 rgba()用法
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19ffffff,endColorstr=#19ffffff);
 
