@@ -10,7 +10,7 @@ new Date(Y,M-1,D,H,M,S);
 ####	IE CSS Hack
 *	_         &nbsp;&emsp;IE6
 *	\*      	  &nbsp;&nbsp;&emsp;IE6/7
-*	+		   &emsp;IE7
+*	\+		   &emsp;IE7
 *	\9         &emsp;IE6/7/8
 *	\0         &emsp;IE8
 
