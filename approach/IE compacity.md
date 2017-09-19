@@ -100,6 +100,13 @@ e5
 </tr>
 </table>
 
+#### IE点击子元素父元素会失去焦点
+
+事件触发的先后顺序<br>
+* blur > click <br>
+* mousedown > mouseup > blur <br>
+可以使用mousedown来替代click <br>
+[jQuery: fire click() before blur() event](https://stackoverflow.com/questions/10652852/jquery-fire-click-before-blur-event?rq=1)
 
 
 
