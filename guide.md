@@ -8,9 +8,9 @@
 
 #####	[optimization	性能优化](https://github.com/LittleChell/frontEnd/tree/master/docs/optimization.md)
 
-#####	[Tips	小技巧](https://github.com/LittleChell/front-end/tree/master/docs/tips.md)
+#####	[Tips	小技巧](https://github.com/LittleChell/frontEnd/tree/master/docs/tips.md)
 
-#####	[Troubles	踩过的坑](https://github.com/LittleChell/front-end/tree/master/docs/troubles.md)
+#####	[Troubles	踩过的坑](https://github.com/LittleChell/frontEnd/tree/master/docs/troubles.md)
 
 #####	[Examples	实用实例](https://github.com/LittleChell/frontEnd/tree/master/approach/examples.md)
 
