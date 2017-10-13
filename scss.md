@@ -31,4 +31,40 @@
 
 *	在mixin定义的变量名后增加三个点（...）来使mixin模块接收数量可变的参数。使用@include传递参数的时候，使用逗号将参数分开。
 
+###	extends
+
+	.btn {
+	  border: 1px solid #ccc;
+	  padding: 6px 10px;
+	  font-size: 14px;
+	}
+	.btn-primary {
+	  background-color: #f36;
+	  color: #fff;
+	  @extend .btn;
+	}
+
+编译出来后：
+
+	.btn, .btn-primary {
+	  border: 1px solid #ccc;
+	  padding: 6px 10px;
+	  font-size: 14px;
+	 }
+	.btn-primary {
+	  background-color: #f36;
+	  color: #fff; 
+	}
+
+在sass中的继承，可以继承类样式块中所有样式代码，而且编译出来的css会将选择器合并在一起，形成组合选择器。
+
+### function
+
+可以在参数中使用默认参数
+
+	@function cal($a, $b:5) {
+	  @return $a + $b;
+	}
+
+
 
