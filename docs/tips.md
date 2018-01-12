@@ -27,6 +27,8 @@
 *	事件触发的先后顺序<br>
 	blur > click <br>
 	mousedown > mouseup > blur
+
+	只使用mousedown不能阻止事件冒泡，要阻止事件冒泡还需要在click事件里面调用stopPropagation
 	
 
 ###	css
@@ -42,11 +44,36 @@ display:inline-block的li元素间有空格，解决方法：每个li的开元�
 *	display: inline-block里面子元素和父元素之间存在间隙，使用vertical-align:middle消除（font-size: 0也可以）
 
 *	content属性可以这样用：<br>
-content: attr(data-content)<br>
-使用元素里面的data-content属性值来赋值。伪类里是读取伪类绑定元素的属性值。然后使用js脚本设置data-content属性值就可以了，IE低版本不支持。
-
-*	margin collapse：(bottom)可以设置父元素overflow属性
+	content: attr(data-content)<br>
+	使用元素里面的data-content属性值来赋值。伪类里是读取伪类绑定元素的属性值。然后使用js脚本设置data-content属性值就可以了，IE低版本不支持。
 
 *	animation属性0s要加上秒的单位s
 
-*	父元素overflow: hidden，子元素要突破父元素界限，可以设置子元素position: absolute，但是父元素不能position: relative;
+*	**前提**父元素overflow: hidden，子元素要突破父元素界限，可以设置子元素position: absolute来使子元素相对第一个非static的祖先元素定位;但是如果该子元素超出第一个非static的祖先元素的范围，超出部分会被隐藏，即不能突破第一个非static的祖先元素的范围。
+
+*	border-radius: 左上角水平圆角半径大小	右上角水平圆角半径大小	右下角水平圆角半径大小	左下角水平圆角半径大小/左上角垂直圆角半径大小	右上角垂直圆角半径大小	右下角垂直圆角半径大小	左下角垂直圆角半径大小;百分比水平取的是宽，垂直取的是高。
+
+*	BFC（块格式化上下文：它是块级盒布局的区域，也是浮动元素进行交互的区域）。
+	由以下之一创建：<br>
+	根元素或其它包含它的元素<br>
+	浮动元素 (元素的 float 不是 none)<br>
+	绝对定位元素 (元素的 position 为 absolute 或 fixed)<br>
+	内联块 (元素具有 display: inline-block)<br>
+	具有overflow 且值不是 visible 的块元素<br><br>
+	应用：<br>
+	防止margin重叠，即不会发生margin collapse<br>
+	浮动相关问题<br>
+
+*	IFC
+
+	IFC(Inline Formatting Contexts)直译为"内联格式化上下文"，IFC的line box（线框）高度由其包含行内元素中**最高**（可能包含多个line box）的实际高度计算而来（不受到竖直方向的padding/margin影响)
+
+	IFC中的line box一般左右都贴紧整个IFC，但是会因为float元素而扰乱。float元素会位于IFC与与line box之间，使得line box宽度缩短。 同个IFC下的多个line box高度会不同。 IFC中是不可能有块级元素的，当插入块级元素时（如p中插入div）会产生两个匿名块与div分隔开，即产生两个IFC，每个IFC对外表现为块级元素，与div垂直排列（可以理解为块级元素单独占一行）。
+	
+	那么IFC一般有什么用呢？
+	
+	水平居中：当一个块要在环境中水平居中时，设置其为inline-block则会在外层产生IFC，通过text-align则可以使其水平居中。
+	
+	垂直居中：创建一个IFC，用其中一个元素撑开父元素的高度，然后设置其vertical-align:middle，其他行内元素则可以在此父元素下垂直居中。
+
+*	先浮动的元素会影响后面行内元素的起始位置，但不影响块级元素的位置。
