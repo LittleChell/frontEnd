@@ -28,3 +28,9 @@
 	Promise的抛错具有冒泡性质，能够不断传递，这样就能够在下一个catch()中统一处理这些错误。同时catch()也能够捕获then()中抛出的错误，所以建议不要使用then()的rejected回调，而是统一使用catch()来处理错误。
 
 	可以通过构造函数的方式来建立一个Promise对象new Promise，也可以通过直接调用Promise函数上面的reject、resolve方法来执行。
+
+
+####	valueOf
+
+	方法返回指定对象的原始值。
+	一般==，不===

@@ -68,7 +68,7 @@ display:inline-block的li元素间有空格，解决方法：每个li的开元�
 
 	IFC(Inline Formatting Contexts)直译为"内联格式化上下文"，IFC的line box（线框）高度由其包含行内元素中**最高**（可能包含多个line box）的实际高度计算而来（不受到竖直方向的padding/margin影响)
 
-	IFC中的line box一般左右都贴紧整个IFC，但是会因为float元素而扰乱。float元素会位于IFC与与line box之间，使得line box宽度缩短。 同个IFC下的多个line box高度会不同。 IFC中是不可能有块级元素的，当插入块级元素时（如p中插入div）会产生两个匿名块与div分隔开，即产生两个IFC，每个IFC对外表现为块级元素，与div垂直排列（可以理解为块级元素单独占一行）。
+	IFC中的line box一般左右都贴紧整个IFC，但是会因为float元素而扰乱。**float元素会位于IFC与line box之间，使得line box宽度变窄。** 同个IFC下的多个line box高度会不同。 IFC中是不可能有块级元素的，当插入块级元素时（如p中插入div）会产生两个匿名块与div分隔开，即产生两个IFC，每个IFC对外表现为块级元素，与div垂直排列（可以理解为块级元素单独占一行）。
 	
 	那么IFC一般有什么用呢？
 	
@@ -76,4 +76,16 @@ display:inline-block的li元素间有空格，解决方法：每个li的开元�
 	
 	垂直居中：创建一个IFC，用其中一个元素撑开父元素的高度，然后设置其vertical-align:middle，其他行内元素则可以在此父元素下垂直居中。
 
-*	先浮动的元素会影响后面行内元素的起始位置，但不影响块级元素的位置。
+*	先浮动的元素会影响后面行内元素的起始位置（即IFC中所述的，float元素会位于IFC与与line box之间，使得line box宽度变窄。），但不影响块级元素的位置。
+
+*	怪异模式（Quirks Mode）和标准模式（又称严格模式）
+
+	标准模式是指浏览器按W3C标准解析执行代码；
+	声明DOCTYPE来决定浏览器使用标准模式。
+
+	怪异模式是使用浏览器各自的方式解析执行代码；
+	不加DOCTYPE，浏览器使用怪异模式。
+
+*	纯函数
+
+	相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。

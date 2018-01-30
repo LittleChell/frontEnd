@@ -8,11 +8,13 @@ IE支持以下格式：<br>
 new Date(Y,M-1,D,H,M,S);
 
 ####	IE CSS Hack
-*	_         &nbsp;&emsp;IE6
-*	\*      	  &nbsp;&nbsp;&emsp;IE6/7
-*	\+		   &emsp;IE7
-*	\9         &emsp;IE6/7/8
-*	\0         &emsp;IE8
+*	_           &nbsp;&emsp;IE6
+*	*      		&nbsp;&nbsp;&emsp;IE6/7（IE7及以下版本）
+*	*+		    &emsp;IE7（未测试）
+*	\9          &emsp;IE6/7/8（IE8及以下版本）	
+*	\0          &emsp;IE8
+
+小结：有\的一般是在属性值后面加，其它一般在属性名称前面加。
 
 ####	兼容ie8 rgba()用法
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19ffffff,endColorstr=#19ffffff);
