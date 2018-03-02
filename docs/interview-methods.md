@@ -92,8 +92,8 @@
 
 		对象（函数）:	当对象在逻辑环境中执行时，只要当前引用的对象不为空(null)，都会被认为是true。
 
-		注意：	new Boolean(false) == true
-				Boolean(false) == false
+		注意：	new Boolean(false) == true	//对象引用不为空
+				Boolean(false) == false	//相当于false
 
 	4.	比较操作符
 		
@@ -105,7 +105,7 @@
 
 		3). 如果操作数中存在对象类型，先将对象转为基础类型（valueOf和toString()），然后再根据上面两条进行值的比较。
 
-		4).	null和undefined在比较时不进行数据转换，null和自身比较、null和undefined比较都会返回true，和其他值比较都会返回false；undefined和自身比较、undefined和null比较都会返回true，和其他值比较都会返回false。
+		4).	null和undefined在比较时不进行数据转换，null和自身比较、null和undefined比较（==）都会返回true，和其他值比较都会返回false；undefined和自身比较、undefined和null比较都会返回true，和其他值比较都会返回false。
 
 	5.	一些例子：	
 	

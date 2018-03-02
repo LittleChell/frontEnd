@@ -2,7 +2,7 @@
 
 *	清除缓存的机制
 
-	1、meta方法：
+	1、meta方法(HTTP权威指南不推荐，因为可能会遇到不支持该配置的服务器)：
 
 		<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
@@ -123,7 +123,7 @@
 
 *	this的指向
 	
-	this最终都是指向最后一次调用的它的对象，对象中的function和function中的function不一样。
+	this最终都是指向**最后一次**调用的它的对象，对象中的function和function中的function不一样。
 
 	1、	全局作用域下面的函数this指向window对象，因此直接调用该函数会导致里面的this指向的属性方法绑定到window上面；
 
@@ -139,7 +139,7 @@
 
 *	箭头函数this的修正
 
-	对象中this修正了函数中this的指向，this指向箭头函数源头调用的对象。
+	对象中this修正了函数中this的指向，this指向箭头函数对象调用链中**最后一次**调用的对象，主要用于修正对象函数属性中的函数。
 
 *	使用new的过程发生了什么
 
@@ -225,6 +225,25 @@
 	*	404 Not Found	请求的资源未在服务器上面找到
 	*	502 Bad Gateway	作为网关或者代理服务器尝试执行请求时，从上游服务器拿到了无效的响应。
 	*	504 Gateway Timeout	作为网关或者代理工作的服务器尝试执行请求时，未能及时从上游服务器或者辅助服务器（例如DNS）收到响应。
+
+*	JSONP与CROS
+
+	JSONP
+
+		优点：支持所有浏览器。
+		缺点：只支持GET请求。
+
+	CROS
+
+		优点：支持所有类型的HTTP请求。
+		缺点：有些浏览器不支持。
+
+	CROS设置：
+
+		对于简单请求，在头信息中增加一个Origin字段。
+
+		非简单请求，会在正式通信之前，增加一次HTTP查询请求，称为“预检请求”。（浏览器自动发送预检请求）浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。
+		
 
 	
 

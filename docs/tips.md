@@ -89,3 +89,33 @@ display:inline-block的li元素间有空格，解决方法：每个li的开元�
 *	纯函数
 
 	相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。
+
+*	未知高度元素父元素中垂直居中
+
+	代码结构
+
+		<div class="parent">
+            <div class="content">1233</div>
+            <div class="placeholder"></div>
+        </div>
+
+	样式
+
+		.parent{
+            width: 100%;
+            height: 400px;
+            border: 1px solid #000;
+        }
+        .content{
+            display: inline-block;
+            vertical-align: middle;
+            border: 1px solid #000;
+        }
+        .placeholder{
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+            width: 0;
+        }
+
+	关键在于需要新增加一个标签（div.placeholder）来占位（位置不限，排列位置与（div.content）**同行**即可，即（div.content）的高度不能大于等于100%），
