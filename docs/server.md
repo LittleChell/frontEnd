@@ -15,9 +15,39 @@
 *	缓存静态内容。代理缓存通常可以满足相当数量的网站请求，大大降低应用服务器上的负载。
 *	支持压缩。通过压缩优化可以提高网站访问速度，还能大大减少带宽的消耗。
 
+Nginx配置
+
+	```
+	location / {
+       proxy_pass_header Server;
+       proxy_set_header Host $http_host;
+       proxy_set_header X-Real-IP $remote_addr;
+       proxy_set_header X-Scheme $scheme;
+       proxy_pass http://tornado.server;
+    }
+	```
+
+location部分用于匹配反向代理的网页位置。反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。
+
+proxy_pass来配置访问的url。
+
 ####	负载均衡
 
 负载均衡（Load Balance，简称LB）是一种服务器或网络设备的集群技术。负载均衡将特定的业务（网络服务、网络流量等）分担给多个服务器或网络设备，从而提高了业务处理能力，保证了业务的高可用性。
 
 目的：
-为了解决单个节点压力过大、web服务器相应过慢、服务器负载过重时导致的服务瘫痪，无法正常提供服务的问题。
+为了解决单个节点压力过大、web服务器响应过慢、服务器负载过重时导致的服务瘫痪，无法正常提供服务的问题。
+
+Nginx配置
+
+	```
+	upstream tornado.server {
+	   server 127.0.0.1:8001;
+	   server 127.0.0.1:8002;
+	   server 127.0.0.1:8003;
+	}
+	```
+
+upstream指令主要用于负载均衡，设置一系列的后端服务器。nginx 的 upstream默认是以轮询的方式实现负载均衡，这种方式中，每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。此外还有ip_hash、weight、url_hash、fair等负载均衡策略。 
+
+upstream命名和服务器地址根据实际情况修改。

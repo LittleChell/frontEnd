@@ -3,14 +3,21 @@
 ####	cookie
 
 攻击：
+
 通过XSS攻击可获取用户的cookie；
+
 网络截获；
+
 flash代码截获cookie
 
 提高安全性：
+
 设置cookie的HTTPOnly属性可以防止页面脚本获取，但不能完全防范XSS攻击。
+
 使用HTTPS传输；
+
 cookie设置合理的有效期；
+
 写cookie时加密，读cookie时解密。
 
 ####	负载均衡

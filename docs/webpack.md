@@ -31,7 +31,54 @@ plugin作用于整个项目的构建部分，module作用于项目构建过程�
 ###	webpack配置性能优化
 
 1.	unlifyJsPlugin（压缩js）在生产环境中使用
+2.	利用 DllPlugin 和 DllReferencePlugin 预编译资源模块
 
+该方式是将不需要改动的第三方插件与自己的业务代码进行分开打包。
+
+DllPlugin的作用是预先编译一些模块，DllReferencePlugin则是把这些预先编译好的模块引用起来。DllPlugin必须要在DllReferencePlugin执行前先执行一次。
+
+Dll优势：
+
+*	DllPlugin的作用是预先编译一些模块，而DllReferencePlugin则是把这些预先编译好的模块引用起来。这边需要注意的是DllPlugin必须要在DllReferencePlugin执行前先执行一次；
+*	Dll资源能有效地解决资源循环依赖的问题；
+*	通过配置读取，减少维护的成本；
+
+配置方式：
+
+webpack.dll.conf.js：用来生成静态包dll的配置。
+	
+	const path = require('path')
+	const webpack = require('webpack')
+	module.exports = {
+	  entry: {
+	    vendor: ['vue','vue-router']
+	  },
+	  output: {
+	    path: path.join(__dirname, '../static'),
+	    filename: 'dll.[name].js',
+	    library: '[name]'
+	  },
+	  plugins: [
+	    new webpack.DllPlugin({
+	      path: path.join(__dirname, '../', '[name]-manifest.json'),
+	      name: '[name]'
+	    })
+	  ]
+	}
+	
+
+webpack.base.conf.js：通常的打包的配置。这里引用的是**json文件**
+	
+	const manifest = require('../vendor-manifest.json')
+	......
+	这里是其它基本配置
+	......
+	plugins: [
+	    new webpack.DllReferencePlugin({
+	      manifest
+	    })
+	  ]
+	
 
 ###	webpack生产文件性能优化
 
@@ -44,6 +91,8 @@ vendor：项目打包的时候，把一些公用的库打包到vendor.js中，�
 
 manifest：在vendor的基础上，再抽取出要经常变动的部分，比如关于异步加载js模块部分的内容。
 
+external：把依赖资源声明为一个外部依赖，然后通过script外链脚本引入。通过配置后可以告知webpack遇到此类变量名时就可以不用解析和编译至模块的内部文件中，而改用从外部变量中读取，这样能极大的提升编译速度，同时也能更好的利用CDN来实现缓存。
+
 ###	常用插件
 
 *	HtmlWebpackPlugin
@@ -53,5 +102,13 @@ manifest：在vendor的基础上，再抽取出要经常变动的部分，比如
 *	ExtractTextPlugin
 	
 	样式脚本分开打包
+
+*	HMR
+
+	局部热更新
+
+*	CommonsChunkPlugin
+
+	把一些公用的库打包；这里会整体打包。
 
 	
