@@ -49,4 +49,17 @@ link:	[https://stackoverflow.com/questions/18875674/whats-the-difference-between
 
 --save-dev用来开发使用，添加到package.json文件devDependencies 键下
 
+#####	npm常见错误
+*	
+	node install.js 
+	
+	...
+	
+	This is probably not a problem with npm. There is likely additional logging output above
+	...
+	
+	这里是因为在执行安装的过程中需要执行install.js，这里会下载Chromium,官网建议是进行跳过，我们可以执行 —ignore-scripts 忽略这个js执行。也可以通过设置环境变量set PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1阻止下载 Chromium （因为封网，直接下载会失败）
+
+	解决:npm i --save puppeteer --ignore-scripts
+
 ###	file
