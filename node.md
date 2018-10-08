@@ -62,4 +62,12 @@ link:	[https://stackoverflow.com/questions/18875674/whats-the-difference-between
 
 	解决:npm i --save puppeteer --ignore-scripts
 
-###	file
+#####	file
+#####	setImmediate and process.nextTick
+
+The setTimeout's callback will be called from the event loop.（event loop里面）
+
+The setImmediate callbacks are fired off the event loop.
+Use setImmediate if you want to queue the function behind whatever **I/O event** callbacks that are already in the event queue. Use process.nextTick to effectively queue the function at the head of the **event queue** so that it executes immediately after the current function completes.（setImmediate在event loop事件外，process.nextTick在event loop前）
+
+So in a case where you're trying to break up a long running, CPU-bound job using recursion, you would now want to use setImmediate rather than process.nextTick to queue the next iteration as otherwise any I/O event callbacks wouldn't get the chance to run between iterations.
